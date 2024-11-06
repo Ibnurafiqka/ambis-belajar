@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  /* Font */
+  --font-utama: "Poppins", serif;
+
+  /* Warna Utama */
+  --primary-color: #4e44ff;
+  --secondary-color: #6c63ff;
+  --accent-color: #ff6b6b;
+
+  /* Tema Gelap */
+  --dark-bg: #1a1a2e; /* Latar belakang utama gelap */
+  --dark-secondary-bg: #25274d; /* Warna latar sekunder gelap */
+  --dark-theme-bg: linear-gradient(
+    135deg,
+    var(--dark-bg) 0%,
+    var(--dark-secondary-bg) 100%
+  );
+  --dark-text: #ffffff; /* Warna teks untuk tema gelap */
+
+  /* Tema Terang */
+  --light-bg: #f0f0f3; /* Latar belakang utama yang lembut dan netral */
+  --light-secondary-bg: #e8eaf6; /* Warna sekunder untuk kartu atau elemen lain */
+  --light-accent: #b8c1ec; /* Warna aksen ringan */
+  --light-text: #4a4a4a; /* Warna teks utama */
+  --light-border: #d1d1e0; /* Warna border lembut */
+  --highlight-color: #009688; /* Warna aksen untuk tombol atau elemen interaktif */
+  --light-theme-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --correct-color: #48bb78;
+  --incorrect-color: #ff6b6b;
+}
+
+body {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  font-family: var(--font-utama);
+}
+
+.quiz-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.question-container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.question {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.options {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.option-item {
+  margin-bottom: 0.5rem;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-label:hover {
+  background: var(--primary-color);
+}
+
+.submit-btn {
+  background: var(--primary-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  color: var(--dark-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #3a3aad;
+}
+
+.correct {
+  background-color: rgba(72, 187, 120, 0.2);
+}
+
+.incorrect {
+  background-color: rgba(255, 107, 107, 0.2);
+}
+
+.result-container {
+  display: none;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.result-correct {
+  color: var(--correct-color);
+}
+
+.result-incorrect {
+  color: var(--incorrect-color);
+}
+
+.statistic {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}

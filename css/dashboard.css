@@ -1,0 +1,525 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+
+:root {
+  /* Font */
+  --font-utama: "Poppins", serif;
+
+  /* Warna Utama */
+  --primary-color: #4e44ff;
+  --secondary-color: #6c63ff;
+  --accent-color: #ff6b6b;
+  --accent-2nd-color: #e55a5a;
+
+  /* Tema Gelap */
+  --dark-bg: #1a1a2e; /* Latar belakang utama gelap */
+  --dark-secondary-bg: #25274d; /* Warna latar sekunder gelap */
+  --dark-theme-bg: linear-gradient(
+    135deg,
+    var(--dark-bg) 0%,
+    var(--dark-secondary-bg) 100%
+  );
+  --dark-text: #ffffff; /* Warna teks untuk tema gelap */
+
+  /* Tema Terang */
+  --light-bg: #f0f0f3; /* Latar belakang utama yang lembut dan netral */
+  --light-secondary-bg: #e8eaf6; /* Warna sekunder untuk kartu atau elemen lain */
+  --light-accent: #b8c1ec; /* Warna aksen ringan */
+  --light-text: #4a4a4a; /* Warna teks utama */
+  --light-border: #d1d1e0; /* Warna border lembut */
+  --highlight-color: #009688; /* Warna aksen untuk tombol atau elemen interaktif */
+  --light-theme-bg: linear-gradient(
+    135deg,
+    #f5f7fa 0%,
+    #c3cfe2 100%
+  ); /* Background gradient untuk tema terang */
+}
+
+body {
+  background: var(--light-bg);
+  font-family: "Poppins", serif;
+  color: var(--light-text);
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.bg-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none; /* Agar tidak menghalangi interaksi */
+  z-index: -1; /* Di belakang konten */
+}
+
+.floating-shape {
+  position: absolute;
+  background: rgba(78, 68, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  animation: float 20s infinite alternate ease-in-out;
+  box-shadow: 0 10px 30px rgba(78, 68, 255, 0.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: translate(50px, 50px) rotate(180deg) scale(1.1);
+    filter: hue-rotate(90deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg) scale(1);
+    filter: hue-rotate(180deg);
+  }
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .floating-shape {
+    display: none; /* Sembunyikan di layar kecil untuk performa */
+  }
+}
+
+.navbar {
+  background: var(--light-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Ubah border untuk mode gelap */
+  padding: 1rem 2rem;
+  z-index: 1;
+}
+
+.navbar-brand {
+  color: var(--primary-color) !important;
+  font-weight: 800;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand i {
+  color: var(--accent-color);
+}
+
+.nav-link {
+  color: var(--light-text) !important;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.nav-link:hover,
+.nav-item.active .nav-link {
+  color: var(--primary-color) !important;
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  background: var(--light-bg);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  color: var(--light-text); /* Ubah ke warna teks gelap */
+  transition: all 0.3s;
+}
+
+.divider {
+  padding: 0.5px 0.5px;
+  margin: 0.5rem 0.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  background-color: var(--light-text);
+  border-radius: 20px;
+  height: 1px;
+}
+
+.dropdown-item:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.toggle-theme {
+  cursor: pointer;
+  color: var(--light-text); /* Ubah ke warna teks gelap */
+  font-size: 1.4rem;
+}
+
+.btn-logout {
+  background-color: var(--accent-color);
+  border: none;
+}
+
+.btn-logout:hover {
+  background-color: var(--accent-2nd-color);
+}
+
+.btn-logout-batal {
+  border: none;
+  color: var(--dark-text);
+  background-color: #4a4a4a;
+}
+
+.btn-logout-batal:hover {
+  background-color: #333;
+}
+
+/* Main Content */
+.main-container {
+  background-color: var(--light-secondary-bg);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  background: var(--light-bg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  height: calc(100vh - 100px);
+  position: sticky;
+  top: 1rem;
+  border-radius: 15px;
+}
+
+.sidebar h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  color: var(--primary-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.content {
+  background: var(--light-bg);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  position: relative;
+}
+
+.content h2 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.h2-khusus {
+  margin-top: 1rem;
+}
+
+/* Modal styles for logout confirmation */
+.modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.welcome-card {
+  background: linear-gradient(135deg, #4e44ff, #6c63ff);
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.welcome-card h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-card {
+  /* background: rgba(255, 255, 255, 0.05); */
+  background: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 5px 10px var(--secondary-color);
+}
+
+.stat-card-new {
+  background: var(--light-accent);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+.stat-card-new:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 5px 10px var(--light-accent);
+}
+
+.list-group-item {
+  border: none;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.badge-primary {
+  color: var(--dark-text);
+  background-color: var(--primary-color);
+}
+
+.stat-title {
+  /* color: #bbb; */
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.stat-value {
+  /* color: var(--primary-color); */
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+/* Pop-up Modal */
+.popup-modal {
+  display: none; /* Awalnya disembunyikan */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+}
+
+.popup-content {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.close-btn {
+  color: #4a4a4a;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.carousel-item {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light-accent);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.footer {
+  background: var(--light-bg);
+  margin-top: 2rem;
+  text-align: center;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark Mode */
+.dark-mode {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.dark-mode .main-container {
+  background: var(--dark-secondary-bg);
+}
+
+.dark-mode .navbar {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+.dark-mode .sidebar,
+.dark-mode .content {
+  background: var(--dark-bg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  color: var(--dark-text);
+}
+
+.dark-mode .navbar .nav-link {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .nav-link {
+  color: var(--light-text) !important;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.dark-mode .nav-link:hover,
+.dark-mode .nav-item.active .nav-link {
+  color: var(--primary-color) !important;
+  font-weight: 500;
+}
+
+.dark-mode .dropdown-item {
+  color: var(--light-text);
+}
+
+.dark-mode .dropdown-item:hover {
+  color: var(--dark-text);
+}
+
+.dark-mode .navbar .navbar-brand {
+  color: var(--primary-color);
+}
+
+.dark-mode .navbar {
+  background: var(--dark-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .nav-link {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .nav-link a:hover {
+  color: var(--primary-color) !important;
+}
+
+.dark-mode .dropdown-menu {
+  background: var(--dark-bg);
+}
+
+.dark-mode .dropdown-menu a {
+  color: var(--dark-text);
+}
+
+/* Dark mode log out modal */
+.dark-mode .modal-header,
+.dark-mode .modal-body,
+.dark-mode .modal-footer {
+  background: var(--dark-bg);
+}
+
+/* .dark-mode .close-btn {
+        color: white;
+      }
+
+      .dark-mode .close-btn span {
+        color: white;
+      } */
+
+.dark-mode .divider {
+  padding: 0.5px 0.5px;
+  margin: 0.5rem 0.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  background-color: var(--dark-text);
+  border-radius: 20px;
+  height: 1px;
+}
+
+.dark-mode .toggle-theme {
+  color: var(--dark-text);
+  font-size: 1.2rem;
+}
+
+.dark-mode .sidebar a {
+  color: var(--dark-text);
+}
+
+.dark-mode .carousel-item {
+  background: var(--dark-secondary-bg);
+}
+
+.dark-mode .stat-card-new {
+  background: var(--dark-secondary-bg);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+.dark-mode .stat-card-new:hover {
+  box-shadow: 0 5px 10px var(--dark-secondary-bg);
+}
+
+.dark-mode .footer {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
